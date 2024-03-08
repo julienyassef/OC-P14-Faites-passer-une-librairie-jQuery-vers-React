@@ -1,5 +1,5 @@
 //CSS
-import './App.css'
+import './App.scss'
 
 //react
 import React from 'react';
