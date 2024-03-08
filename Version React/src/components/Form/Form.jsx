@@ -1,7 +1,11 @@
 //SCSS
 import './Form.scss'
 
+//react
 import React from 'react';
+
+//Import 
+import StateSelector from '../StateSelector/StateSelector';
 
 
 const EmployeeForm = () => {
@@ -46,8 +50,8 @@ const EmployeeForm = () => {
           <input id="city" type="text" className="employee-form__input" />
 
           <label htmlFor="state" className="employee-form__label">State</label>
-          <select name="state" id="state" className="employee-form__select"></select>
-
+          <StateSelector className="employee-form__select"/>
+    
           <label htmlFor="zip-code" className="employee-form__label">Zip Code</label>
           <input id="zip-code" type="number" className="employee-form__input" />
         </fieldset>
