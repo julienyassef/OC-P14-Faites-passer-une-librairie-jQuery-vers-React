@@ -41,7 +41,7 @@ const EmployeeForm = () => {
         </div>
 
         <fieldset className="employee-form__fieldset">
-          <legend>Address</legend>
+          <legend className="employee-form__fieldset__legend">Address</legend>
 
           <label htmlFor="street" className="employee-form__label">Street</label>
           <input id="street" type="text" className="employee-form__input" />
