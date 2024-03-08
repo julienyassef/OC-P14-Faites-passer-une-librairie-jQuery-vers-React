@@ -56,7 +56,9 @@
         }
   
     &__button-save {
-      align-self: center; 
+      display: block; 
+      margin: 20px auto;
+      margin-bottom: 0px;
       padding: 10px 50px;
       background-color: $primary-color;
       color: white;
