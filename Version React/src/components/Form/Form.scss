@@ -1,0 +1,71 @@
+@import "../../variables";
+
+.employee-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color:#ffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+    &__label {
+      display: block; 
+      margin-bottom: 5px;
+    }
+  
+    &__input, &__select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+
+  
+    &__fieldset {
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      gap: 10px; // Espacement entre les champs d'adresse
+  
+      legend {
+        padding-bottom: 10px; // Espacement sous la légende
+      }
+    }
+
+    
+    &__field-row {
+      display: flex;
+      gap: 20px; 
+      margin-bottom: 10px;
+  
+      // Permettre aux éléments de prendre toute la largeur disponible
+      & > div {
+        flex-grow: 1;
+      }
+    }
+
+    &__field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+  
+    &__button-save {
+      align-self: center; 
+      padding: 10px 50px;
+      background-color: $primary-color;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+  
