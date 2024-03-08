@@ -1,2 +1,7 @@
-$primary-color:  #5A6F07;
-$secondary-color: #93AD19;
+/* Définition des variables SCSS */
+$primary-color: #93AD19;  
+$secondary-color: #5A6F07;  
+$text-color: #333;  
+$background-color: #f4f4f4;  
+$link-color: #323817;  
+$link-hover-color: darken($link-color, 15%);  
