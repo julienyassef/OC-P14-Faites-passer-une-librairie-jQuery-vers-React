@@ -10,17 +10,13 @@ import Form from '../../components/Form/Form';
 function Home() {
   return (
     <>
-      <div className="title">
-        <h1 className="title">HRnet</h1>
-      </div>
-      <div className="container">
-        <Link to="/employee-list" className="small-button">
-          View Current Employees
-        </Link>
-        <h2 className="subtitle">Create Employee</h2>
+      <div className="home">
+        <h1 className="home__title">HRnet</h1>
+        <Link to="/employee-list" className="home__link">View Current Employees</Link>
+        <h2 className="home__subtitle">Create Employee</h2>
         <Form />
       </div>
-    </>
+  </>
   );
 }
 export default Home
