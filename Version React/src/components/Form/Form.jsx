@@ -3,6 +3,8 @@ import './Form.scss'
 
 //react
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 //Component
 import Selector from '../Selector/Selector';
@@ -51,6 +53,13 @@ const EmployeeForm = () => {
     setEmployee(prev => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleDateChange = (date) => {
+    setEmployee(prevState => ({
+      ...prevState,
+      dateOfBirth: date
     }));
   };
 
@@ -103,6 +112,8 @@ const EmployeeForm = () => {
   // fucntion fermeture modal
   const closeModal = () => setIsModalOpen(false);
 
+ 
+ 
   return (
     <>
       <div className="employee-form">
@@ -128,7 +139,14 @@ const EmployeeForm = () => {
               {/* Champ Date of Birth */}
               <div className="employee-form__field">
                 <label htmlFor="date-of-birth" className="employee-form__label">Date of Birth</label>
-                <input type="text" id="date-of-birth" name="dateOfBirth" value={employee.dateOfBirth} onChange={handleInputChange} className="employee-form__input" />
+                <DatePicker 
+                  selected={employee.dateOfBirth} 
+                  onChange={handleDateChange}
+                  dateFormat="MM/dd/yyyy"
+                  className="employee-form__input"
+                  id="date-of-birth"
+                  name="dateOfBirth"
+                />
                 {renderError('dateOfBirth')}
               </div>
               {/* Champ Start Date */}
