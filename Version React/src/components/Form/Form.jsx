@@ -4,10 +4,17 @@ import './Form.scss'
 //react
 import React, { useState } from 'react';
 
-//Import 
-import StateSelector from '../StateSelector/StateSelector';
-import { useEmployee } from '../../provider/EmployeeContext'; // Assurez-vous que le chemin d'importation est correct
+//Component
+import Selector from '../Selector/Selector';
+
+//Import
+import { useEmployee } from '../../provider/EmployeeContext'; 
 import ModaleEmployeeCreated from '../ModaleEmployeeCreated/ModaleEmployeeCreated';
+
+//Data
+import { dataStates } from '../../data/dataStates';
+import { dataDepartments } from '../../data/dataDepartments';
+
 
 const EmployeeForm = () => {
 
@@ -147,7 +154,13 @@ const EmployeeForm = () => {
 
             {/* Champ State */}
             <label htmlFor="state" className="employee-form__label">State</label>
-            <StateSelector name="state" value={employee.state} onChange={handleInputChange} className="employee-form__select"/>
+            <Selector
+              name="state"
+              value={employee.state}
+              onChange={handleInputChange}
+              options={dataStates.map(state => ({ value: state.abbreviation, label: state.name }))}
+              placeholder="Select a State"
+            />
             {renderError('state')}
 
             {/* Champ Zip Code */}
@@ -158,14 +171,13 @@ const EmployeeForm = () => {
 
             {/* Champ Department */}
             <label htmlFor="department" className="employee-form__label">Department</label>
-            <select name="department" id="department" value={employee.department} onChange={handleInputChange} className="employee-form__select">
-              <option value="">Select Department</option>
-              <option value="Sales">Sales</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Human Resources">Human Resources</option>
-              <option value="Legal">Legal</option>
-            </select>
+            <Selector
+              name="department"
+              value={employee.department}
+              onChange={handleInputChange}
+              options={dataDepartments.map(dept => ({ value: dept.id, label: dept.name }))}
+              placeholder="Select a Department"
+            />
             {renderError('department')}
 
 

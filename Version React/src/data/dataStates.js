@@ -1,4 +1,4 @@
- export const states = [
+ export const dataStates = [
     {
       name: 'Alabama',
       abbreviation: 'AL',
@@ -236,3 +236,5 @@
       abbreviation: 'WY',
     },
   ];
+
+  
