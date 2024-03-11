@@ -12,7 +12,8 @@ import ModaleEmployeeCreated from '../ModaleEmployeeCreated/ModaleEmployeeCreate
 const EmployeeForm = () => {
 
   const { saveEmployeeData } = useEmployee();
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const [employee, setEmployee] = useState({
     firstName: '',
@@ -26,6 +27,18 @@ const EmployeeForm = () => {
     department: '',
   });
 
+  // Liste des champs obligatoires
+  const requiredFields = ['firstName', 'lastName', 'dateOfBirth', 'startDate', 'street', 'city', 'state', 'zipCode', 'department'];
+
+  // regard dans fiedlError si le o'objet est rempli, si oui il renvoit la div cha champs rempli avec  le message dans FieldError
+  const renderError = (fieldName) => {
+    if (fieldErrors[fieldName]) {
+      return <div className="error">{fieldErrors[fieldName]}</div>;
+    }
+    return null; 
+  };
+
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setEmployee(prev => ({
@@ -36,10 +49,30 @@ const EmployeeForm = () => {
 
   const saveEmployee = (event) => {
     event.preventDefault();
+
+    let errors = {};
+    let formIsValid = true;
+
+    // vérifie si le champs et rempli et return message error plus formulaire non valid
+    requiredFields.forEach(field => {
+      if (!employee[field]) {
+        formIsValid = false;
+        errors[field] = `${field[0].toUpperCase() + field.slice(1)} is required`;
+      }
+    });
+
+    //met à jour sle state fieldErrors avec le message d'erreur personnalisé au champs
+    setFieldErrors(errors);
+
+    // permet l'envoi du formulaire si il est rempli correctement
+    if (!formIsValid) {
+      return;
+    }
     
     saveEmployeeData(employee);
     console.log('Employee saved!', employee);
     
+  
     // Réinitialiser le formulaire
     setEmployee({
       firstName: '',
@@ -52,6 +85,10 @@ const EmployeeForm = () => {
       zipCode: '',
       department: '',
     });
+
+    //réintialiser le state après soumission formualaire
+    setFieldErrors({});
+    
     //modif le state modalOpen
     setIsModalOpen(true);
   };
@@ -65,53 +102,72 @@ const EmployeeForm = () => {
         <form id="create-employee" onSubmit={saveEmployee}>
 
           <div className="employee-form__field-row">
-            <div className="employee-form__field">
-              <label htmlFor="first-name" className="employee-form__label">First Name</label>
-              <input type="text" id="first-name" name="firstName" value={employee.firstName} onChange={handleInputChange} className="employee-form__input" />
-            </div>
-            <div className="employee-form__field">
-              <label htmlFor="last-name" className="employee-form__label">Last Name</label>
-              <input type="text" id="last-name" name="lastName" value={employee.lastName} onChange={handleInputChange} className="employee-form__input" />
-            </div>
+              {/* Champ First Name */}
+              <div className="employee-form__field">
+                <label htmlFor="first-name" className="employee-form__label">First Name</label>
+                <input type="text" id="first-name" name="firstName" value={employee.firstName} onChange={handleInputChange} className="employee-form__input" />
+                {renderError('firstName')}
+              </div>
+
+              {/* Champ Last Name */}
+              <div className="employee-form__field">
+                <label htmlFor="last-name" className="employee-form__label">Last Name</label>
+                <input type="text" id="last-name" name="lastName" value={employee.lastName} onChange={handleInputChange} className="employee-form__input" />
+                {renderError('lastName')}
+              </div>
           </div>
 
           <div className="employee-form__field-row">
-            <div className="employee-form__field">
-              <label htmlFor="date-of-birth" className="employee-form__label">Date of Birth</label>
-              <input type="text" id="date-of-birth" name="dateOfBirth" value={employee.dateOfBirth} onChange={handleInputChange} className="employee-form__input" />
-            </div>
-            <div className="employee-form__field">
-              <label htmlFor="start-date" className="employee-form__label">Start Date</label>
-              <input type="text" id="start-date" name="startDate" value={employee.startDate} onChange={handleInputChange} className="employee-form__input" />
-            </div>
+              {/* Champ Date of Birth */}
+              <div className="employee-form__field">
+                <label htmlFor="date-of-birth" className="employee-form__label">Date of Birth</label>
+                <input type="text" id="date-of-birth" name="dateOfBirth" value={employee.dateOfBirth} onChange={handleInputChange} className="employee-form__input" />
+                {renderError('dateOfBirth')}
+              </div>
+              {/* Champ Start Date */}
+              <div className="employee-form__field">
+                <label htmlFor="start-date" className="employee-form__label">Start Date</label>
+                <input type="text" id="start-date" name="startDate" value={employee.startDate} onChange={handleInputChange} className="employee-form__input" />
+                {renderError('startDate')}
+              </div>
           </div>
 
           <fieldset className="employee-form__fieldset">
             <legend className="employee-form__fieldset__legend">Address</legend>
 
+            {/* Champ Street */}
             <label htmlFor="street" className="employee-form__label">Street</label>
             <input type="text" id="street" name="street" value={employee.street} onChange={handleInputChange} className="employee-form__input" />
-
+            {renderError('street')}
+   
+            {/* Champ City */}
             <label htmlFor="city" className="employee-form__label">City</label>
             <input type="text" id="city" name="city" value={employee.city} onChange={handleInputChange} className="employee-form__input" />
+            {renderError('city')}
 
-            {/* Assurez-vous que le StateSelector gère correctement les changements d'état, par exemple via une prop `onChange` que vous devez implémenter */}
+            {/* Champ State */}
             <label htmlFor="state" className="employee-form__label">State</label>
             <StateSelector name="state" value={employee.state} onChange={handleInputChange} className="employee-form__select"/>
+            {renderError('state')}
 
+            {/* Champ Zip Code */}
             <label htmlFor="zip-code" className="employee-form__label">Zip Code</label>
             <input type="number" id="zip-code" name="zipCode" value={employee.zipCode} onChange={handleInputChange} className="employee-form__input" />
+            {renderError('zipCode')}
           </fieldset>
 
-          <label htmlFor="department" className="employee-form__label">Department</label>
-          <select name="department" id="department" value={employee.department} onChange={handleInputChange} className="employee-form__select">
-            <option value="">Select Department</option>
-            <option value="Sales">Sales</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Human Resources">Human Resources</option>
-            <option value="Legal">Legal</option>
-          </select>
+            {/* Champ Department */}
+            <label htmlFor="department" className="employee-form__label">Department</label>
+            <select name="department" id="department" value={employee.department} onChange={handleInputChange} className="employee-form__select">
+              <option value="">Select Department</option>
+              <option value="Sales">Sales</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Legal">Legal</option>
+            </select>
+            {renderError('department')}
+
 
           <button type="submit" className="employee-form__button-save">Save</button>
         </form>
