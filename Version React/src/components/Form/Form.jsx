@@ -11,7 +11,7 @@ import Selector from '../Selector/Selector';
 
 //Import
 import { useEmployee } from '../../provider/EmployeeContext'; 
-import ModaleEmployeeCreated from '../ModaleEmployeeCreated/ModaleEmployeeCreated';
+import ModalEmployeeCreated from '../ModalEmployeeCreated/ModalEmployeeCreated';
 
 //Data
 import { dataStates } from '../../data/dataStates';
@@ -202,7 +202,7 @@ const EmployeeForm = () => {
           <button type="submit" className="employee-form__button-save">Save</button>
         </form>
       </div>
-      <ModaleEmployeeCreated isOpen={isModalOpen} handleClose={closeModal}/>
+      <ModalEmployeeCreated isOpen={isModalOpen} handleClose={closeModal}/>
     </>
   );
 };

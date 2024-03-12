@@ -1,10 +1,10 @@
 //scss
-import './ModaleEmployeeCreated.scss'
+import './ModalEmployeeCreated.scss'
 
 //React
 import { useEffect } from 'react';
 
-function ModaleEmployeeCreated({ isOpen, handleClose }) {
+function ModalEmployeeCreated({ isOpen, handleClose }) {
 
     useEffect(() => {
         const body = document.body;
@@ -32,4 +32,4 @@ function ModaleEmployeeCreated({ isOpen, handleClose }) {
   </div>
   )
 }
-export default ModaleEmployeeCreated
+export default ModalEmployeeCreated
