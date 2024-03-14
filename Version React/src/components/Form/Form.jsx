@@ -202,7 +202,7 @@ const EmployeeForm = () => {
           <button type="submit" className="employee-form__button-save">Save</button>
         </form>
       </div>
-      <ModalEmployeeCreated isOpen={isModalOpen} handleClose={closeModal}/>
+      <ModalEmployeeCreated />
     </>
   );
 };

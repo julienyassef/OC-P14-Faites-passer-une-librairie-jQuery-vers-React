@@ -1,0 +1,45 @@
+// Importez vos variables SCSS
+@import "../../variables";
+
+.page-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+    &__title {
+        color: $primary-color;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2em; // Augmentez la taille si nécessaire pour souligner qu'il s'agit d'une erreur 404
+    }
+
+    &__subtitle {
+        color: $secondary-color;
+        margin-bottom: 20px;
+        font-size: 1.5em; // Légèrement plus grand pour donner plus de contexte à l'utilisateur
+    }
+
+    &__link {
+        display: block;
+        background-color: $primary-color;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+        background-color: darken($primary-color, 10%);
+        text-decoration: none;
+        }
+    }
+}
