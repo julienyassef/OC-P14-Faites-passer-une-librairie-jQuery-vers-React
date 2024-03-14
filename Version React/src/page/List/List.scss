@@ -16,17 +16,7 @@
       border-collapse: collapse;
       margin-bottom: 20px;
   
-      th, td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid darken($background-color, 10%);
-        color: $text-color; 
-      }
-  
-      th {
-        background-color: lighten($primary-color, 40%);
-        color: $secondary-color;
-      }
+      
     }
   
     &__link-home {

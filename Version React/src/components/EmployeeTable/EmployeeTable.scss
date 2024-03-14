@@ -1,0 +1,15 @@
+// Bloc principal pour le tableau
+.listTable {
+    & tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+  
+    & tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+    }
+  }
