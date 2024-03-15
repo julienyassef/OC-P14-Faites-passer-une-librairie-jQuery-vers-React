@@ -108,7 +108,7 @@ const EmployeeTable = ({ employees}) => {
         </tbody>
       </table>
       <div className='wrapperPagination'>
-        <PaginationCountTable currentPage={currentPage} totalPages={totalPages}/>
+        <PaginationCountTable currentPage={currentPage}  perPage={perPage} totalEntries={sortedEmployees.length} />
         <PaginationNavigationTable currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
       </div>
     </div>

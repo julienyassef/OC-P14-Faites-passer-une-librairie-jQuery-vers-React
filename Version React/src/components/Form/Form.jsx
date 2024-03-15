@@ -56,10 +56,10 @@ const EmployeeForm = () => {
     }));
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = (date, fieldName) => {
     setEmployee(prevState => ({
       ...prevState,
-      dateOfBirth: date
+      [fieldName]: date 
     }));
   };
 
@@ -141,7 +141,7 @@ const EmployeeForm = () => {
                 <label htmlFor="date-of-birth" className="employee-form__label">Date of Birth</label>
                 <DatePicker 
                   selected={employee.dateOfBirth} 
-                  onChange={handleDateChange}
+                  onChange={(date) => handleDateChange(date, 'dateOfBirth')}
                   dateFormat="MM/dd/yyyy"
                   className="employee-form__input"
                   id="date-of-birth"
@@ -152,7 +152,14 @@ const EmployeeForm = () => {
               {/* Champ Start Date */}
               <div className="employee-form__field">
                 <label htmlFor="start-date" className="employee-form__label">Start Date</label>
-                <input type="text" id="start-date" name="startDate" value={employee.startDate} onChange={handleInputChange} className="employee-form__input" />
+                <DatePicker 
+                  selected={employee.startDate} 
+                  onChange={(date) => handleDateChange(date, 'startDate')}
+                  dateFormat="MM/dd/yyyy"
+                  className="employee-form__input"
+                  id="start-date"
+                  name="start Date"
+                />
                 {renderError('startDate')}
               </div>
           </div>
