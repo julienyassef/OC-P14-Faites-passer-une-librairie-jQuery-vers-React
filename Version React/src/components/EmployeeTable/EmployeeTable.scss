@@ -13,3 +13,11 @@
       flex-direction: row;
     }
   }
+
+  .wrapperPagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    
+  }

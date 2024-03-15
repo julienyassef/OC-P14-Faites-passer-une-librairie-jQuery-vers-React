@@ -1,0 +1,14 @@
+@import "../../variables";
+
+
+.disabledLink {
+    color: rgb(171, 169, 169);
+ 
+}
+  
+.enabledLink {
+    color: $secondary-color;
+    text-decoration: none;
+
+}
+  

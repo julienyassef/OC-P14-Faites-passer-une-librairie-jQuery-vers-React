@@ -8,6 +8,7 @@ import React, { useState, useMemo } from 'react';
 import SortableHeaderTable from '../SortableHeaderTable/SortableHeaderTable';
 import PaginationControlTable from '../PaginationControlTable/PaginationControlTable';
 import PaginationCountTable from '../PaginationCountTable/PaginationCountTable';
+import PaginationNavigationTable from '../PaginationNavigationTable/PaginationNavigationTable';
 
 
 const EmployeeTable = ({ employees}) => {
@@ -15,7 +16,7 @@ const EmployeeTable = ({ employees}) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   //initialise le nbr d'employee affiché par page, de base 10
   const [perPage, setPerPage] = useState(10);
-
+  //initilise la page actuel, de base 1
   const [currentPage, setCurrentPage] = useState(1);
   
 
@@ -70,7 +71,7 @@ const EmployeeTable = ({ employees}) => {
   const indexOfFirstItem = indexOfLastItem - perPage;
   const currentItems = sortedEmployees.slice(indexOfFirstItem, indexOfLastItem);
 
-
+  // calcul le nbr de page existantes selon le nbr d'employee affiché par page
   const totalPages = Math.ceil(sortedEmployees.length / perPage);
  
   return (
@@ -106,7 +107,10 @@ const EmployeeTable = ({ employees}) => {
           ))}
         </tbody>
       </table>
-      <PaginationCountTable currentPage={currentPage} totalPages={totalPages}/>
+      <div className='wrapperPagination'>
+        <PaginationCountTable currentPage={currentPage} totalPages={totalPages}/>
+        <PaginationNavigationTable currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
+      </div>
     </div>
   );
 };
