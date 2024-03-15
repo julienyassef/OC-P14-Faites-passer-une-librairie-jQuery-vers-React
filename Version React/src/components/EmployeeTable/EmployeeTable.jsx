@@ -12,26 +12,21 @@ import PaginationControlTable from '../PaginationControlTable/PaginationControlT
 const EmployeeTable = ({ employees}) => {
   //initilise l'etat de tri 
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
+  //initialise le nbr d'employee affiché par page, de base 10
+  const [perPage, setPerPage] = useState(10);
 
   //func tri avec clef colone et direction
   const onSort = (columnKey, direction) => {
     setSortConfig({ key: columnKey, direction });
   };
 
-  const [perPage, setPerPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleChangePerPage = (value) => {
-    setPerPage(value);
-  };
-  
   //function tri table en utilsant useMemo pour memoriser le resultat du tri
   const sortedEmployees = useMemo(() => {
     if (!sortConfig.key) return employees;
     return [...employees].sort((a, b) => {
       let valA = a[sortConfig.key];
       let valB = b[sortConfig.key];
-  
+      
       // Convertir en nombre si numérique
       if (!isNaN(valA) && !isNaN(valB)) {
         valA = parseFloat(valA);
@@ -54,6 +49,12 @@ const EmployeeTable = ({ employees}) => {
     });
   }, [employees, sortConfig]);
   
+  // fucntion pour afficher le nbr d'employee par page
+  const handleChangePerPage = (value) => {
+    setPerPage(value);
+};
+
+ 
   return (
     <div>
       <PaginationControlTable onChange={handleChangePerPage}/>
@@ -72,7 +73,7 @@ const EmployeeTable = ({ employees}) => {
           </tr>
         </thead>
         <tbody>
-          {sortedEmployees.map(employee => (
+          {sortedEmployees.slice(0, perPage).map(employee => (
             <tr key={employee.id}>
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
