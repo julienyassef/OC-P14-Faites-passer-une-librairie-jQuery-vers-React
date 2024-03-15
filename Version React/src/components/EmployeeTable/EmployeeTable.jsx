@@ -7,6 +7,7 @@ import React, { useState, useMemo } from 'react';
 //Components
 import SortableHeaderTable from '../SortableHeaderTable/SortableHeaderTable';
 import PaginationControlTable from '../PaginationControlTable/PaginationControlTable';
+import PaginationCountTable from '../PaginationCountTable/PaginationCountTable';
 
 
 const EmployeeTable = ({ employees}) => {
@@ -14,6 +15,11 @@ const EmployeeTable = ({ employees}) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   //initialise le nbr d'employee affiché par page, de base 10
   const [perPage, setPerPage] = useState(10);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  
+
+
 
   //func tri avec clef colone et direction
   const onSort = (columnKey, direction) => {
@@ -52,8 +58,20 @@ const EmployeeTable = ({ employees}) => {
   // fucntion pour afficher le nbr d'employee par page
   const handleChangePerPage = (value) => {
     setPerPage(value);
-};
+    setCurrentPage(1);// Réinitialiser à la première page à chaque changement de perPage
+  };
 
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calcul pour déterminer les éléments à afficher sur la page courante
+  const indexOfLastItem = currentPage * perPage;
+  const indexOfFirstItem = indexOfLastItem - perPage;
+  const currentItems = sortedEmployees.slice(indexOfFirstItem, indexOfLastItem);
+
+
+  const totalPages = Math.ceil(sortedEmployees.length / perPage);
  
   return (
     <div>
@@ -73,7 +91,7 @@ const EmployeeTable = ({ employees}) => {
           </tr>
         </thead>
         <tbody>
-          {sortedEmployees.slice(0, perPage).map(employee => (
+          {currentItems.map(employee =>( 
             <tr key={employee.id}>
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
@@ -88,6 +106,7 @@ const EmployeeTable = ({ employees}) => {
           ))}
         </tbody>
       </table>
+      <PaginationCountTable currentPage={currentPage} totalPages={totalPages}/>
     </div>
   );
 };
