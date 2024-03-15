@@ -9,6 +9,7 @@ import SortableHeaderTable from '../SortableHeaderTable/SortableHeaderTable';
 import PaginationControlTable from '../PaginationControlTable/PaginationControlTable';
 import PaginationCountTable from '../PaginationCountTable/PaginationCountTable';
 import PaginationNavigationTable from '../PaginationNavigationTable/PaginationNavigationTable';
+import SearchBarTable from '../SearchBarTable/SearchBarTable';
 
 
 const EmployeeTable = ({ employees}) => {
@@ -18,11 +19,11 @@ const EmployeeTable = ({ employees}) => {
   const [perPage, setPerPage] = useState(10);
   //initilise la page actuel, de base 1
   const [currentPage, setCurrentPage] = useState(1);
+  //initialise le state de recherche
+  const [searchTerm, setSearchTerm] = useState('');
   
 
-
-
-  //func tri avec clef colone et direction
+  //function tri avec clef colone et direction
   const onSort = (columnKey, direction) => {
     setSortConfig({ key: columnKey, direction });
   };
@@ -66,17 +67,43 @@ const EmployeeTable = ({ employees}) => {
     setCurrentPage(pageNumber);
   };
 
+  // Filtrer  sur toute la liste d'employés triée
+  const filteredEmployees = useMemo(() => {
+    // Crée une expression régulière pour tester si les champs commencent par le terme de recherche
+    const searchRegex = new RegExp(`^${searchTerm.toLowerCase()}`, 'i');
+  
+    return sortedEmployees.filter(employee => {
+      // Conversion des dates et des codes postaux en chaînes pour la comparaison
+      const dateOfBirthString = employee.dateOfBirth.toLowerCase();
+      const startDateString = employee.startDate.toLowerCase();
+  
+      // Utilise l'expression régulière pour vérifier le début des chaînes pour certains champs
+      // et inclut une vérification insensible à la casse pour tous les champs
+      return searchRegex.test(employee.firstName.toLowerCase()) ||
+             searchRegex.test(employee.lastName.toLowerCase()) ||
+             searchRegex.test(employee.city.toLowerCase()) ||
+             searchRegex.test(employee.state.toLowerCase()) ||
+             startDateString.includes(searchTerm.toLowerCase()) ||
+             dateOfBirthString.includes(searchTerm.toLowerCase()) ||
+             employee.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
+             employee.zipCode.toLowerCase().startsWith(searchTerm.toLowerCase());
+    });
+  }, [sortedEmployees, searchTerm]);
+  
   // Calcul pour déterminer les éléments à afficher sur la page courante
   const indexOfLastItem = currentPage * perPage;
   const indexOfFirstItem = indexOfLastItem - perPage;
-  const currentItems = sortedEmployees.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredEmployees.slice(indexOfFirstItem, indexOfLastItem);
 
   // calcul le nbr de page existantes selon le nbr d'employee affiché par page
   const totalPages = Math.ceil(sortedEmployees.length / perPage);
+
+  
  
   return (
     <div>
       <PaginationControlTable onChange={handleChangePerPage}/>
+      <SearchBarTable onSearch={(value) => setSearchTerm(value)}/>
       <table className="listTable">
         <thead >
           <tr>
@@ -92,7 +119,7 @@ const EmployeeTable = ({ employees}) => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map(employee =>( 
+        {currentItems.map(employee => (
             <tr key={employee.id}>
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
