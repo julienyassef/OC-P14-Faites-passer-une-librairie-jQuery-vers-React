@@ -104,18 +104,69 @@ const EmployeeTable = ({ employees}) => {
       <PaginationControlTable onChange={handleChangePerPage}/>
       <SearchBarTable onSearch={(value) => setSearchTerm(value)}/>
       </div>
+      {/* <table>
+  <thead>
+    <tr>
+      <th>
+      <SortableHeaderTable title="First Name" columnKey="firstName" onSortChange={onSort}/>
+      </th>
+      <th>
+      <SortableHeaderTable title="First Name" columnKey="firstName" onSortChange={onSort}/>
+      </th>
+      <th>
+      <SortableHeaderTable title="First Name" columnKey="firstName" onSortChange={onSort}/>
+      </th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Entrée 1</td>
+      <td>Entrée 2</td>
+      <td>Entrée 3</td>
+    </tr>
+    <tr>
+      <td>Entrée 4</td>
+      <td>Entrée 5</td>
+      <td>Entrée 6</td>
+    </tr>
+    <tr>
+      <td>Entrée 7</td>
+      <td>Entrée 8</td>
+      <td>Entrée 9</td>
+    </tr>
+  </tbody>
+</table> */}
       <table className="listTable">
-        <thead >
+        <thead className="listTable__header" >
           <tr>
-            <SortableHeaderTable title="First Name" columnKey="firstName" onSortChange={onSort}/>
-            <SortableHeaderTable title="Last Name" columnKey="lastName" onSortChange={onSort}/>
-            <SortableHeaderTable title="Start Date" columnKey="startDate" onSortChange={onSort}/>
-            <SortableHeaderTable title="Department" columnKey="department" onSortChange={onSort}/>
-            <SortableHeaderTable title="Date of Birth" columnKey="dateOfBirth" onSortChange={onSort}/>
-            <SortableHeaderTable title="Street" columnKey="street" onSortChange={onSort}/>
-            <SortableHeaderTable title="City" columnKey="city" onSortChange={onSort}/>
-            <SortableHeaderTable title="State" columnKey="state" onSortChange={onSort}/>
-            <SortableHeaderTable title="Zip Code" columnKey="zipCode" onSortChange={onSort}/>
+            <th>
+              <SortableHeaderTable title="First Name" columnKey="firstName" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="Last Name" columnKey="lastName" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="Start Date" columnKey="startDate" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="Department" columnKey="department" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="Date of Birth" columnKey="dateOfBirth" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="Street" columnKey="street" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="City" columnKey="city" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="State" columnKey="state" onSortChange={onSort}/>
+            </th>
+            <th>
+              <SortableHeaderTable title="Zip Code" columnKey="zipCode" onSortChange={onSort}/>
+            </th>
           </tr>
         </thead>
         <tbody>
