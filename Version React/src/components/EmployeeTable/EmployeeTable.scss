@@ -1,4 +1,3 @@
-// Bloc principal pour le tableau
 .listTable {
     & tr:nth-child(odd) {
       background-color: #f2f2f2;
@@ -14,10 +13,18 @@
     }
   }
 
-  .wrapperPagination{
+  .wrapperPagination {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
     
+  }
+
+  .wrapperPaginationHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+
   }

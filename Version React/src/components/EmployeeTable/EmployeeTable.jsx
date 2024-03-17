@@ -77,8 +77,6 @@ const EmployeeTable = ({ employees}) => {
       const dateOfBirthString = employee.dateOfBirth.toLowerCase();
       const startDateString = employee.startDate.toLowerCase();
   
-      // Utilise l'expression régulière pour vérifier le début des chaînes pour certains champs
-      // et inclut une vérification insensible à la casse pour tous les champs
       return searchRegex.test(employee.firstName.toLowerCase()) ||
              searchRegex.test(employee.lastName.toLowerCase()) ||
              searchRegex.test(employee.city.toLowerCase()) ||
@@ -102,8 +100,10 @@ const EmployeeTable = ({ employees}) => {
  
   return (
     <div>
+      <div className='wrapperPaginationHeader'>
       <PaginationControlTable onChange={handleChangePerPage}/>
       <SearchBarTable onSearch={(value) => setSearchTerm(value)}/>
+      </div>
       <table className="listTable">
         <thead >
           <tr>
