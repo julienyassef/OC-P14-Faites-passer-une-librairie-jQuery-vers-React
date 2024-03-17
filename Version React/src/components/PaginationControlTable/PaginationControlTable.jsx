@@ -13,8 +13,8 @@ const PaginationControlTable = ({ onChange }) => {
   };
 
   return (
-    <div>
-      <span>Show</span>
+    <div className='wrapperPaginationControl'>
+      <span  >Show</span>
       <select value={perPage} onChange={handleChange}>
         <option value={10}>10</option>
         <option value={25}>25</option>
