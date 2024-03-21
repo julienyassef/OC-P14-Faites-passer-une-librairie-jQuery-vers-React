@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .listTable th, .listTable td {
   width: 120px; 
   border-collapse: collapse;
@@ -7,8 +9,23 @@
   text-align: left;
 }
 
+.listTable td {
+  padding: 10px;
+  color: $text-color;
+  font-size: 16px;
+}
+
+.wrapperTable{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .listTable {
- 
+  width: 100%;
+  
     & tr:nth-child(odd) {
       background-color: #f2f2f2;
     }
@@ -24,18 +41,23 @@
   }
 
   .wrapperPagination {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
     
   }
 
   .wrapperPaginationHeader {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
+    margin-bottom: 10px;
 
   }
 
