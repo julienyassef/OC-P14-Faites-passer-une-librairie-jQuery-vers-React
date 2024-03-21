@@ -138,37 +138,19 @@ const EmployeeTable = ({ employees}) => {
   </tbody>
 </table> */}
       <table className="listTable">
+        <th>
         <thead className="listTable__header" >
-          <tr>
-            <th>
-              <SortableHeaderTable title="First Name" columnKey="firstName" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="Last Name" columnKey="lastName" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="Start Date" columnKey="startDate" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="Department" columnKey="department" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="Date of Birth" columnKey="dateOfBirth" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="Street" columnKey="street" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="City" columnKey="city" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="State" columnKey="state" onSortChange={onSort}/>
-            </th>
-            <th>
-              <SortableHeaderTable title="Zip Code" columnKey="zipCode" onSortChange={onSort}/>
-            </th>
-          </tr>
+          <SortableHeaderTable title="First Name" columnKey="firstName" onSortChange={onSort}/>
+          <SortableHeaderTable title="Last Name" columnKey="lastName" onSortChange={onSort}/>
+          <SortableHeaderTable title="Start Date" columnKey="startDate" onSortChange={onSort}/>
+          <SortableHeaderTable title="Department" columnKey="department" onSortChange={onSort}/>
+          <SortableHeaderTable title="Date of Birth" columnKey="dateOfBirth" onSortChange={onSort}/>
+          <SortableHeaderTable title="Street" columnKey="street" onSortChange={onSort}/>
+          <SortableHeaderTable title="City" columnKey="city" onSortChange={onSort}/>
+          <SortableHeaderTable title="State" columnKey="state" onSortChange={onSort}/>
+          <SortableHeaderTable title="Zip Code" columnKey="zipCode" onSortChange={onSort}/>
         </thead>
+        </th>
         <tbody>
         {currentItems.map(employee => (
             <tr key={employee.id}>

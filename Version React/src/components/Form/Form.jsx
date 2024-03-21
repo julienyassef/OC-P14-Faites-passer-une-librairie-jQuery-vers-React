@@ -11,7 +11,7 @@ import Selector from '../Selector/Selector';
 
 //Import
 import { useEmployee } from '../../provider/EmployeeContext'; 
-import ModalEmployeeCreated from '../ModalEmployeeCreated/ModalEmployeeCreated';
+import Modal from '../../../../OC-P14-Ma-Bibliotheque-de-composants/src/lib/Modal/Modal';
 
 //Data
 import { dataStates } from '../../data/dataStates';
@@ -109,11 +109,10 @@ const EmployeeForm = () => {
     setIsModalOpen(true);
   };
 
-  // fucntion fermeture modal
+  // function fermeture modal
   const closeModal = () => setIsModalOpen(false);
 
- 
- 
+
   return (
     <>
       <div className="employee-form">
@@ -209,7 +208,15 @@ const EmployeeForm = () => {
           <button type="submit" className="employee-form__button-save">Save</button>
         </form>
       </div>
-      <ModalEmployeeCreated />
+      <Modal 
+      isOpen={isModalOpen} 
+      handleClose={closeModal}
+      content="Employee Created!"
+      escapeClose={true}
+      closeOnClickOutside={true}
+      disableScroll={true}
+      centeredModal={true}
+      />
     </>
   );
 };
