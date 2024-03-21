@@ -1,59 +1,64 @@
 @import "../../variables";
 
-.no-scroll {
-  overflow: hidden;
-}
+$primary-color: #93AD19;  
+$secondary-color: #5A6F07;  
+$text-color: #333;  
+$background-color: #f4f4f4;  
+$link-color: #323817;  
+$link-hover-color: darken($link-color, 15%); 
+
 
 .modal {
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  background-color: var(--background-color);
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  position: relative; 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  z-index: 101;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 
   &__content {
-    background-color: $background-color;
-    width: 300px;
-    height: 60px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,1);
-    position: relative; 
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-align: center;
+    margin: 0;
+    
+  }
+  &__close {
+    background-color: $secondary-color;
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+    position: absolute;
+    right: -15px; 
+    top: -15px; 
+    font-size: 15px;
+    cursor: pointer;
+    color: var(--background-color);
     display: flex;
     align-items: center; 
     justify-content: center; 
-    
-    &__close {
-      background-color: $secondary-color;
-      height: 25px;
-      width: 25px;
-      border-radius: 50px;
-      position: absolute;
-      right: -15px; 
-      top: -15px; 
-      font-size: 15px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      
+      color: var(--text-color);
+    }
+
+    &__linkClose {
+      color: var(--primary-color);
+      text-decoration: none;
       cursor: pointer;
-      color: $background-color;
-      display: flex;
-      align-items: center; 
-      justify-content: center; 
 
       &:hover {
-        background-color: darken($primary-color, 10%);
-        color: $text-color;
-        
+        color: var(--link-hover-color);
       }
-    }
-  
-    &__text {
-        color: $text-color;
-        margin: 0 auto;
-        
-        
     }
   }
 

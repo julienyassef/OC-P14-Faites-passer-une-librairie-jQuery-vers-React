@@ -1,5 +1,6 @@
 //SCSS
 import './Form.scss'
+import '../ModalEmployeeCreated/ModalEmployeeCreated.scss'
 
 //react
 import React, { useState } from 'react';
@@ -216,6 +217,10 @@ const EmployeeForm = () => {
       closeOnClickOutside={true}
       disableScroll={true}
       centeredModal={true}
+      modalClass = 'modal'
+      contentClass = 'modal__content'
+      linkCloseClass = 'modal__linkClose'
+      closeClass = 'modal__close'
       />
     </>
   );
