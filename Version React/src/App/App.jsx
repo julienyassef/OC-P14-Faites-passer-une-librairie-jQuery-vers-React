@@ -12,6 +12,7 @@ import { EmployeeProvider } from '../provider/EmployeeContext.jsx'
 import List from '../page/List/List';
 import Home from '../page/Home/Home';
 import Error404 from '../page/Error404/Error404.jsx';
+import DemoPage from '../page/DemoPage/DemoPage.jsx';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/employee-list" element={<List />} />
           <Route path="*" element={<Error404 />} />
+          <Route path="/demo" element={<DemoPage />} />
         </Routes>
       </BrowserRouter>
     </EmployeeProvider>

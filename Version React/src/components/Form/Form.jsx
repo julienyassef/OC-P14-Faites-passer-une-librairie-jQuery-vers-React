@@ -12,7 +12,7 @@ import Selector from '../Selector/Selector';
 
 //Import
 import { useEmployee } from '../../provider/EmployeeContext'; 
-import Modal from '../../../../OC-P14-Ma-Bibliotheque-de-composants/src/lib/Modal/Modal';
+import Modal from 'jy-oc-p14-ma-bibliotheque-de-composants';
 
 //Data
 import { dataStates } from '../../data/dataStates';
